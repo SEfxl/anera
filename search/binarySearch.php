@@ -36,6 +36,14 @@ class binarySearch
 
     }
 
+    /**
+     *搜索目标值的最左边界,不断收缩右侧边界
+     *
+     * @param $data
+     * @param $target
+     *
+     * @return int
+     */
     public function binSearchLeft($data, $target) {
 
         $length = count($data);
@@ -60,6 +68,14 @@ class binarySearch
         return $left;
     }
 
+    /**
+     *搜索目标值的最右边界,不断收缩左侧边界
+     *
+     * @param $data
+     * @param $target
+     *
+     * @return int
+     */
     public function binSearchRight($data, $target) {
 
         $length = count($data);
