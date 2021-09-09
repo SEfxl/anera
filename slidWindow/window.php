@@ -181,16 +181,14 @@ class window
      * @param $s
      * @return bool|string
      */
-    public function lengthOfLongestSubString($s) {
-
-        $window = [];
-        $sourceLen = strlen($s);
-
+    public function getLongestNoRepeatSubStr( $s ) {
         $left = $right = 0;
-        $maxLen = 0;
+        $sourceLength =  strlen($s);
+        $window = [];
+        $length = PHP_INT_MIN;
         $start = 0;
 
-        while ($right < $sourceLen) {
+        while ($right < $sourceLength) {
             $c = $s[$right];
             $right++;
             $window[$c]++;
@@ -200,15 +198,14 @@ class window
                 $window[$d]--;
                 $left++;
             }
-
-            if($right-$left > $maxLen) {
+            if($right - $left > $length) {
+                $length = $right - $left;
                 $start = $left;
-                $maxLen = $right-$left;
             }
-
         }
 
-        return substr($s,$start,$maxLen);
+        return substr($s,$start,$length);
+
     }
 
 
@@ -237,8 +234,8 @@ $t = 'ABC';
 //}
 //echo PHP_EOL;
 
-//$s = "abcabcbb";
+$s = "abcabcbb";
 //$s = "bbbbb";
-$s = "pwwkew";
-$len = $obj->lengthOfLongestSubString($s);
+//$s = "pwwkew";
+$len = $obj->getLongestNoRepeatSubStr($s);
 echo $len.PHP_EOL;
