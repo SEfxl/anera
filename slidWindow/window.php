@@ -214,7 +214,7 @@ class window
 $obj = new window();
 $s = 'ADOBECCODEBANC';
 $t = 'ABC';
-//echo $obj->minCoverSubStr($s, $t) . PHP_EOL;
+echo $obj->minCoverSubStr($s, $t) . PHP_EOL;
 
 //$s = "eidbaooo";
 //$s = "eidboaoo";
@@ -234,8 +234,8 @@ $t = 'ABC';
 //}
 //echo PHP_EOL;
 
-$s = "abcabcbb";
+//$s = "abcabcbb";
 //$s = "bbbbb";
 //$s = "pwwkew";
-$len = $obj->getLongestNoRepeatSubStr($s);
-echo $len.PHP_EOL;
+//$len = $obj->getLongestNoRepeatSubStr($s);
+//echo $len.PHP_EOL;
