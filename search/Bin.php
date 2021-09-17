@@ -1,26 +1,20 @@
 <?php
 /**
- * @Desc:
- * @Author
- * @Time:  5:53 下午
+ * @file         Bin.php
+ * @description  ����
+ * @author       fuxinliang <fuxinliang@zuoyebang.com>
+ * @date         2021-09-12
  */
 
-
-class binarySearch
+class Bin
 {
-    /**
-     * 二分查找
-     * @param $data
-     * @param $target
-     *
-     * @return int
-     */
     public function binSearch($data, $target) {
 
-        $length = count($data);
+        if (empty($data)) {
+            return false;
+        }
         $left = 0;
-        $right = $length - 1;
-
+        $right = count($data) - 1;
         while ($left <= $right) {
             $mid = $left + intval(($right - $left) / 2);
             if ($data[$mid] == $target) {
@@ -31,29 +25,20 @@ class binarySearch
                 $right = $mid - 1;
             }
         }
-
-        return -1;
-
+        return false;
     }
 
-    /**
-     *搜索目标值的最左边界,不断收缩右侧边界
-     *
-     * @param $data
-     * @param $target
-     *
-     * @return int
-     */
-    public function binSearchLeft($data, $target) {
-
-        $length = count($data);
+    public function binSearchLeftBound($data, $target) {
+        if(empty($data)) {
+            return false;
+        }
         $left = 0;
-        $right = $length -1;
-
+        $length = count($data);
+        $right = $length - 1;
         while ($left <= $right) {
             $mid = $left + intval(($right - $left) / 2);
-            if($data[$mid] == $target) {
-              $right = $mid-1;
+            if($target == $data[$mid]) {
+                $right = $mid - 1 ;
             } elseif ($target > $data[$mid]) {
                 $left = $mid + 1;
             }elseif ($target < $data[$mid]) {
@@ -66,29 +51,24 @@ class binarySearch
         }
 
         return $left;
+
     }
 
-    /**
-     *搜索目标值的最右边界,不断收缩左侧边界
-     *
-     * @param $data
-     * @param $target
-     *
-     * @return int
-     */
-    public function binSearchRight($data, $target) {
+    public function binSearchRightBound($data,$target) {
+
+        if(empty($data)) {
+            return false;
+        }
 
         $length = count($data);
         $left = 0;
         $right = $length - 1;
 
         while ($left <= $right) {
-
             $mid = $left + intval(($right - $left) / 2);
-
-            if($data[$mid] == $target) {
+            if($target == $data[$mid]) {
                 $left = $mid + 1;
-            } elseif ($target > $data[$mid]) {
+            }elseif ($target > $data[$mid]) {
                 $left = $mid + 1;
             }elseif ($target < $data[$mid]) {
                 $right = $mid - 1;
@@ -96,26 +76,32 @@ class binarySearch
         }
 
         if($right < 0 || $data[$right] != $target) {
-
             return -1;
         }
 
         return $right;
 
     }
+
+
 }
 
+$obj = new Bin();
 
-$obj = new binarySearch();
-
-$data = [1,2,3,4,5,6,7,8,9];
-$result = $obj->binSearch($data,1);
-echo "search result: ".$result.PHP_EOL;
+//$data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+//$target = 0;
+//$res = $obj->binSearch($data, $target);
+//if($res !== false) {
+//    echo "index is : ".$res.PHP_EOL;
+//}else {
+//    echo "not found".PHP_EOL;
+//}
 
 //$data2 = [1,2,2,2,3];
-//$res = $obj->binSearchLeft($data2,1);
+//$res = $obj->binSearchLeftBound($data2,3);
 //echo "left index = ".$res.PHP_EOL;
 
-//$data2 = [1,2,2,2,3];
-//$res = $obj->binSearchRight($data2,2);
-//echo "right index = ".$res.PHP_EOL;
+
+$data2 = [1,2,2,2,3];
+$res = $obj->binSearchRightBound($data2,2);
+echo "right index = ".$res.PHP_EOL;

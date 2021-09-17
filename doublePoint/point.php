@@ -85,7 +85,6 @@ class point
         for ($i=$slow;$i<$length;$i++) {
             $data[$i] = 0;
         }
-
         for ($i=0;$i<$length;$i++) {
             echo $data[$i].' ';
         }
@@ -100,9 +99,9 @@ $obj = new point();
 //$data = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
 //$obj->orderArray($data);
 
-//$data = [3, 2, 2, 3];   $val = 3;
+$data = [3, 2, 2, 3];   $val = 3;
 //$data = [0,1,2,2,3,0,4,2];   $val = 2;
-//$obj->delElem($data, $val);
+$obj->delElem($data, $val);
 
-$data = [0,1,4,0,2];
-$obj->moveZeroElem($data);
+//$data = [0,1,4,0,2];
+//$obj->moveZeroElem($data);

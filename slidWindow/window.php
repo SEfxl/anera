@@ -5,6 +5,7 @@
  * @Time:  2:17 下午
  */
 
+error_reporting(E_ALL || ~E_NOTICE);
 
 class window
 {
@@ -208,13 +209,47 @@ class window
 
     }
 
+    public function noRepeatSubStr($s) {
+        $length = strlen($s);
+        if($length == 0) {return false;}
+
+        $left = 0;$right = 0;
+        $window = [];
+        $start = 0;
+        $len = PHP_INT_MIN;
+
+        while ($right < $length) {
+            $c = $s[$right];
+            $right++;
+            $window[$c]++;
+
+            while($window[$c] > 1) {
+                $d = $s[$left];
+                $window[$d]--;
+                $left++;
+            }
+
+            if($right - $left > $len) {
+                $start = $left;
+                $len = $right - $left;
+
+            }
+        }
+
+        echo $s.' '.$start.' '.$len.PHP_EOL;
+
+        return substr($s,$start,$len);
+
+
+    }
+
 
 }
 
 $obj = new window();
-$s = 'ADOBECCODEBANC';
-$t = 'ABC';
-echo $obj->minCoverSubStr($s, $t) . PHP_EOL;
+//$s = 'ADOBECCODEBANC';
+//$t = 'ABC';
+//echo $obj->minCoverSubStr($s, $t) . PHP_EOL;
 
 //$s = "eidbaooo";
 //$s = "eidboaoo";
@@ -236,6 +271,9 @@ echo $obj->minCoverSubStr($s, $t) . PHP_EOL;
 
 //$s = "abcabcbb";
 //$s = "bbbbb";
-//$s = "pwwkew";
+$s = "pwwkew";
 //$len = $obj->getLongestNoRepeatSubStr($s);
 //echo $len.PHP_EOL;
+
+$len = $obj->noRepeatSubStr($s);
+echo $len.PHP_EOL;
